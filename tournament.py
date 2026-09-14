@@ -35,13 +35,21 @@ if __name__ == "__main__":
                      NormalStrategy)
 
     scenarios = [
-        [(FlameFactory(), NormalStrategy()),
-         (HealingCreatureFactory(), DefensiveStrategy())],
-        [(FlameFactory(), AggressiveStrategy()),
-         (HealingCreatureFactory(), DefensiveStrategy())],
-        [(AquaFactory(), NormalStrategy()),
-         (HealingCreatureFactory(), DefensiveStrategy()),
-         (TransformCreatureFactory(), AggressiveStrategy())],
+        ("Tournament 0 (basic)",
+         "(Flameling+Normal), (Healing+Defensive)",
+         [(FlameFactory(), NormalStrategy()),
+          (HealingCreatureFactory(), DefensiveStrategy())]),
+        ("Tournament 1 (error)",
+         "(Flameling+Aggressive), (Healing+Defensive)",
+         [(FlameFactory(), AggressiveStrategy()),
+          (HealingCreatureFactory(), DefensiveStrategy())]),
+        ("Tournament 2 (multiple)",
+         "(Aquabub+Normal), (Healing+Defensive), (Transform+Aggressive)",
+         [(AquaFactory(), NormalStrategy()),
+          (HealingCreatureFactory(), DefensiveStrategy()),
+          (TransformCreatureFactory(), AggressiveStrategy())]),
     ]
-    for opponents in scenarios:
+    for title, summary, opponents in scenarios:
+        print(title)
+        print(f"[ {summary} ]")
         battle(opponents)
